@@ -36,48 +36,66 @@ cities = {
 
 
 
+
+
 # ------------------------------------------------
-# gETTING WEATHER DATA IN A VARIABLE
+# GETTING WEATHER DATA IN A VARIABLE
 # ------------------------------------------------
 
-latitude, longitude= cities["Dhaka"]
-data = get_weather_data(latitude=latitude, longitude=longitude)
+
 
 
 # ------------------------------------------------
 # process, visualize and save data in a file
 # ------------------------------------------------
 
+def process_and_visualize_data(data, city):
+    # 2. Process with pandas
+    df = pd.DataFrame({
+        'date': pd.to_datetime(data['daily']['time']),
+        'max_temp': data['daily']['temperature_2m_max'],
+        'min_temp': data['daily']['temperature_2m_min']
+    })
 
-# 2. Process with pandas
-df = pd.DataFrame({
-    'date': pd.to_datetime(data['daily']['time']),
-    'max_temp': data['daily']['temperature_2m_max'],
-    'min_temp': data['daily']['temperature_2m_min']
-})
+    # 3. Calculate average
+    df['avg_temp'] = (df['max_temp'] + df['min_temp']) / 2
 
-# 3. Calculate average
-df['avg_temp'] = (df['max_temp'] + df['min_temp']) / 2
+    # 4. Create visualization
+    plt.figure(figsize=(10, 6))
+    plt.plot(df['date'], df['max_temp'], 'r-o', label='Max')
+    plt.plot(df['date'], df['min_temp'], 'b-o', label='Min')
+    plt.plot(df['date'], df['avg_temp'], 'g--', label='Average')
 
-# 4. Create visualization
-plt.figure(figsize=(10, 6))
-plt.plot(df['date'], df['max_temp'], 'r-o', label='Max')
-plt.plot(df['date'], df['min_temp'], 'b-o', label='Min')
-plt.plot(df['date'], df['avg_temp'], 'g--', label='Average')
+    plt.xlabel('Date')
+    plt.ylabel('Temperature (°C)')
+    plt.title(f'{city} Weather - Past Week')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    return df
+    
 
-plt.xlabel('Date')
-plt.ylabel('Temperature (°C)')
-plt.title('Paris Weather - Past Week')
-plt.legend()
-plt.grid(True, alpha=0.3)
-plt.xticks(rotation=45)
-plt.tight_layout()
 
-# 5. Save everything
-os.makedirs("output", exist_ok=True)
-plt.savefig("output/dhaka_chart.png")
-df.to_csv("output/dhaka_weather.csv", index=False)
 
-print(f"Average temperature: {df['avg_temp'].mean():.1f}°C")
-print("Files saved in 'data' folder")
+# ------------------------------------------------
+# MASTER FUNCTION
+# ------------------------------------------------
+if __name__ == "__main__":
+    for city in list(cities.keys()):
+        latitude, longitude= cities[city]
+        data = get_weather_data(latitude=latitude, longitude=longitude)
 
+        # Save figure and csv in output folder
+        os.makedirs("output", exist_ok=True)
+        df = process_and_visualize_data(data=data, city=city)
+
+        # Saving figure as png
+        plt.savefig(f"output/{city}_chart.png")
+        print(f"{city} Data saved in output folder as PNG Figure")
+
+        #saving figure as csv
+        df.to_csv(f"output/{city}_weather.csv", index=False)
+        print(f"{city} Data saved in output folder as CSV file")
+        
+        
