@@ -35,33 +35,23 @@ cities = {
 }
 
 
-
-
-
-# ------------------------------------------------
-# GETTING WEATHER DATA IN A VARIABLE
-# ------------------------------------------------
-
-
-
-
 # ------------------------------------------------
 # process, visualize and save data in a file
 # ------------------------------------------------
 
 def process_and_visualize_data(data, city):
-    # 2. Process with pandas
+    # Process with pandas
     df = pd.DataFrame({
         'date': pd.to_datetime(data['daily']['time']),
         'max_temp': data['daily']['temperature_2m_max'],
         'min_temp': data['daily']['temperature_2m_min']
     })
 
-    # 3. Calculate average
+    # Calculate average
     df['avg_temp'] = (df['max_temp'] + df['min_temp']) / 2
 
-    # 4. Create visualization
-    plt.figure(figsize=(10, 6))
+ 
+    # Create visualization   plt.figure(figsize=(10, 6))
     plt.plot(df['date'], df['max_temp'], 'r-o', label='Max')
     plt.plot(df['date'], df['min_temp'], 'b-o', label='Min')
     plt.plot(df['date'], df['avg_temp'], 'g--', label='Average')
@@ -97,5 +87,7 @@ if __name__ == "__main__":
         #saving figure as csv
         df.to_csv(f"output/{city}_weather.csv", index=False)
         print(f"{city} Data saved in output folder as CSV file")
+
+        plt.close()  # Close the plot to avoid overlapping plots in the next iteration
         
         
