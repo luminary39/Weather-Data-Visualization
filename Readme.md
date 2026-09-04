@@ -139,20 +139,31 @@ Each city receives a chart containing:
 * Minimum temperature
 * Average temperature
 
-Example:
+### Sample Chart (Dhaka)
 
-```text
-Dhaka Weather - Past Week
+[![Dhaka Weather Chart](image_samples/Dhaka_chart.png "Dhaka Weather Visualization Chart")](image_samples/Dhaka_chart.png)
 
-Temperature (°C)
-      │
-  35  │       ● Max
-  30  │    ●     ●
-  25  │  ●  ──●─── Average
-  20  │    ●     ●
-      └──────────────────
-        Date
-```
+<details>
+<summary><b>Click to view sample charts for all 8 divisions</b></summary>
+<br>
+
+| Dhaka | Chattogram |
+| :---: | :---: |
+| [![Dhaka Weather Chart](image_samples/Dhaka_chart.png "Dhaka Weather Visualization Chart")](image_samples/Dhaka_chart.png) | [![Chattogram Weather Chart](image_samples/Chattogram_chart.png "Chattogram Weather Visualization Chart")](image_samples/Chattogram_chart.png) |
+
+| Rajshahi | Khulna |
+| :---: | :---: |
+| [![Rajshahi Weather Chart](image_samples/Rajshahi_chart.png "Rajshahi Weather Visualization Chart")](image_samples/Rajshahi_chart.png) | [![Khulna Weather Chart](image_samples/Khulna_chart.png "Khulna Weather Visualization Chart")](image_samples/Khulna_chart.png) |
+
+| Barishal | Sylhet |
+| :---: | :---: |
+| [![Barishal Weather Chart](image_samples/Barishal_chart.png "Barishal Weather Visualization Chart")](image_samples/Barishal_chart.png) | [![Sylhet Weather Chart](image_samples/Sylhet_chart.png "Sylhet Weather Visualization Chart")](image_samples/Sylhet_chart.png) |
+
+| Rangpur | Mymensingh |
+| :---: | :---: |
+| [![Rangpur Weather Chart](image_samples/Rangpur_chart.png "Rangpur Weather Visualization Chart")](image_samples/Rangpur_chart.png) | [![Mymensingh Weather Chart](image_samples/Mymensingh_chart.png "Mymensingh Weather Visualization Chart")](image_samples/Mymensingh_chart.png) |
+
+</details>
 
 ## Data Source
 
