@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import os
 
 # -----------------------
-# Get weather data
+#    Get weather data
 # -----------------------
 
 def get_weather_data(latitude, longitude):
@@ -69,7 +69,7 @@ def process_and_visualize_data(data, city):
 
 
 # ------------------------------------------------
-# MASTER FUNCTION
+#               MASTER FUNCTION
 # ------------------------------------------------
 if __name__ == "__main__":
     for city in list(cities.keys()):
